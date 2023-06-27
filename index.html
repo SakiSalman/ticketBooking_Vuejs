@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+          <div class="ticket-app">
+              <h2 class="app-title">Ticket Booking App</h2>
+              <div class="ticket-box">
+                <div class="seat-states">
+                  <div class="states-item" v-for="(value, key) in seatStates" :key="key">
+                    <span :class="value.text.toLowerCase()"></span><span>{{value.text}}</span>
+                  </div>
+                 
+                </div>
+                <div class="tickets">
+                  <div class="bus">
+                    <div class="bus-top">
+                      <div class="door">Door</div>
+                      <div class="driver">Driver</div>
+                    </div>
+                    <div class="seats">
+                      <div 
+                      class="seat" 
+                      :class="item.type" 
+                      v-for="(item, i) in seats"
+                      @click="handleClick(i)"
+                      >{{item.name}}</div>
+                    </div>
+                  </div>
+                  <div class="summery">
+                   
+                    <table class="table" v-if="selectedSeat.length > 0">
+                      <thead>
+                        <tr>
+                          <th >#</th>
+                          <th >Seat</th>
+                          <th >Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                        <tr v-for="(seat, i) in selectedSeat" :key="seat.name">
+                          <th>{{i + 1}}</th>
+                          <td >{{seat.name}}</td>
+                          <td>{{seat.price}} BDT</td>
+                        </tr>
+                        <tr>
+                          <td><strong>Total</strong></td>
+                          <td></td>
+                          <td><strong>{{totalCost}} BDT</strong></td>                        
+                        </tr>
+                        <tr >
+
+                           <td colspan="3">
+                            Have a coupon?
+                            <input type="text" 
+                            v-model="name"
+                            class="form-control" placeholder="Name"                     
+                            />
+                            <input type="text" 
+                            v-model="mobile"
+                            class="form-control" placeholder="Mobile"                     
+                            />
+                            <div class="btn btn-success w-100" @click="confirm">Confirm</div>
+                            
+                          </td>
+                        </tr>
+
+                      </tbody>
+                      <div class="confirm-form">
+                        .
+                      </div>
+                    </table>
+                    <div class="empty-summery" v-else>
+                      Please select a sete to confirm booking!
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+          </div> 
+    </div>
+
+    <!-- scripts -->
+    <script src="./app.js">  
+    </script>
+</hr>
+</input>
